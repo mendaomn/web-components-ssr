@@ -1,14 +1,14 @@
-var MyHeader = {
-    createdCallback: function() {
+'use strict';
+
+export default class MyHeader extends HTMLElement {
+    createdCallback() {
       this.innerHTML = "<h1>Super Mega Title</h1>";
       this.addEventListener('click', this._handler);
-    },
-    _handler: function() {
+    }
+
+    _handler() {
       console.log("Click!");
     }
 };
 
-module.exports = {
-  prototype: MyHeader,
-  name: 'my-header'
-};
+document.registerElement('my-header', MyHeader);

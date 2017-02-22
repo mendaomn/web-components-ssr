@@ -1,13 +1,13 @@
-var MyNewElement = {
-    createdCallback: function() {
+'use strict';
+
+export default class MyNewElement extends HTMLElement {
+    createdCallback() {
       this.innerHTML = "Hi dude!";
-    },
-    _superFn: function() {
+    }
+
+    _superFn() {
       console.log( "Alive" );
     }
 };
 
-module.exports = {
-  prototype: MyNewElement,
-  name: 'my-new-element'
-};
+document.registerElement('my-new-element', MyNewElement);

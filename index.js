@@ -1,15 +1,22 @@
 // Register all elements
+var domino = require( 'domino' );
 var components = require( "server-components" );
-var HTMLElement = require( 'domino' ).impl.HTMLElement;
-var importer = require('./utils/importElements');
-var binder = require('./utils/binder');
-var elements = importer.importEmAll(__dirname + '/public/elements');
 
-elements.forEach( function registerElement(element) {
-  components.registerElement( element.name, {
-    prototype: binder( element.prototype, HTMLElement )
-  } );
-});
+global.HTMLElement = domino.impl.HTMLElement;
+global.document = {
+  registerElement: components.registerElement.bind(components)
+};
+require('./public/bundle.js');
+//
+// var importer = require('./utils/importElements');
+// var binder = require('./utils/binder');
+// var elements = importer.importEmAll(__dirname + '/public/elements');
+
+// elements.forEach( function registerElement(element) {
+//   components.registerElement( element.name, {
+//     prototype: binder( element.prototype, HTMLElement )
+//   } );
+// });
 
 // Set up server
 var express = require( 'express' );
