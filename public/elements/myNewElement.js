@@ -2,11 +2,15 @@
 
 export default class MyNewElement extends HTMLElement {
     createdCallback() {
-      this.innerHTML = "Hi dude!";
+      this.innerHTML = `
+        <button id="btn">Click me!</button>
+      `;
+
+      this.querySelector('#btn').addEventListener('click', this._superFn)
     }
 
     _superFn() {
-      console.log( "Alive" );
+      alert( "Alive" );
     }
 };
 
